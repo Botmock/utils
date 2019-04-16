@@ -1,7 +1,5 @@
-// exports.board = class Board {};
-
 // Return a map associating message id and array of intent ids connected to it
-exports.createIntentMap = function createIntentMap(messages = []) {
+exports.createIntentMap = (messages = []) => {
   return new Map(
     messages.reduce(
       (acc, { next_message_ids }) => [
@@ -37,3 +35,18 @@ exports.createIntentMap = function createIntentMap(messages = []) {
     )
   );
 };
+
+// Given an intent map and message-getting function, returns a function that finds
+// reachable nodes that do not emanate intents
+exports.getIntermediateNodes = (map, getMessage) =>
+  function f(next, collected = []) {
+    for (const { message_id } of next) {
+      // If the provided intent map does not have this message id, recur with
+      // this id appended to `collected`
+      if (!map.has(message_id)) {
+        const { next_message_ids } = getMessage(message_id);
+        return f(next_message_ids, [...collected, message_id]);
+      }
+    }
+    return collected;
+  };
