@@ -1,3 +1,5 @@
+// exports.board = class Board {};
+
 // Return a map associating message id and array of intent ids connected to it
 exports.createIntentMap = function createIntentMap(messages = []) {
   return new Map(

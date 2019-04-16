@@ -1,7 +1,7 @@
 # utils
 
 ```console
-npm i @botmock/utils
+npm i @botmock-api/utils
 ```
 
 utilities for handling data from the Botmock API
