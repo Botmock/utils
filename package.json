@@ -1,0 +1,27 @@
+{
+  "name": "@botmock/utils",
+  "version": "0.1.0",
+  "description": "utilities for handling data from the Botmock API",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "botmock",
+    "nodejs"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 80
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Botmock/utils.git"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "24.7.1"
+  }
+}
