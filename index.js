@@ -36,9 +36,7 @@ exports.createIntentMap = (messages = []) => {
   );
 };
 
-// Given an intent map and message-getting function, returns a function that finds
-// reachable nodes that do not emanate intents
-exports.getIntermediateNodes = (map, getMessage) =>
+exports.createNodeCollector = (map, getMessage) =>
   function f(next, collected = []) {
     for (const { message_id } of next) {
       // If the provided intent map does not have this message id, recur with

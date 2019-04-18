@@ -1,12 +1,12 @@
-const { createIntentMap, getIntermediateNodes } = require('../');
+const { createIntentMap, createNodeCollector } = require('../');
 
 test('`createIntentMap` returns a map', () => {
   expect(createIntentMap()).toEqual(new Map());
 });
 
-test('`getIntermediateNodes` returns a function', () => {
+test('`createNodeCollector` returns a function', () => {
   expect(() => {
-    getIntermediateNodes();
+    createNodeCollector();
   }).not.toThrow();
-  expect(getIntermediateNodes() instanceof Function).toBeTruthy();
+  expect(createNodeCollector() instanceof Function).toBeTruthy();
 });
