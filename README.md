@@ -21,5 +21,5 @@ which associates message ids with the list of intent ids connected to them
 
 Function that takes an intent map (see above) and function that gets a message
 from a board given an id, and returns a function that takes the `next_messages`
-defined on a message, and exhaustive collects _all_ subsequent next messages
+defined on a message, and exhaustively collects _all_ subsequent next messages
 that do not emanate intents
