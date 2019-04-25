@@ -38,6 +38,8 @@ export const createIntentMap = (messages = []) => {
   );
 };
 
+// Return a function that collects reachable nodes that are not connected by
+// intents
 export const createNodeCollector = (map, getMessage) =>
   function f(next, collected = []) {
     for (const { message_id } of next) {
