@@ -1,4 +1,6 @@
-// export const enumeratePaths = digraph => {};
+export const enumeratePaths = digraph => {
+  return new Set();
+};
 
 // Return a map associating message id and array of intent ids connected to it
 export const createIntentMap = (messages = []) => {
