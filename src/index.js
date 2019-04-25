@@ -1,3 +1,5 @@
+// export const enumeratePaths = digraph => {};
+
 // Return a map associating message id and array of intent ids connected to it
 export const createIntentMap = (messages = []) => {
   return new Map(
@@ -48,4 +50,3 @@ export const createNodeCollector = (map, getMessage) =>
     }
     return collected;
   };
-
