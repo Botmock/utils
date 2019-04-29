@@ -13,16 +13,23 @@ describe('enumeratePaths', () => {
       ]) instanceof Set
     ).toBeTruthy();
   });
+  test.todo('handles loops');
+  test.todo('handles multi edges');
+  test.todo('handles simple graphs');
 });
 
 describe('createIntentMap', () => {
   test('returns a map', () => {
     expect(createIntentMap() instanceof Map).toBeTruthy();
   });
+  test.todo('does not contain message not following an intent');
 });
 
 describe('createNodeCollector', () => {
+  // let project = {};
+  // beforeEach(() => {});
   test('returns a function', () => {
     expect(createNodeCollector() instanceof Function).toBeTruthy();
   });
+  test.todo('returned function does not collect nodes connected by intents');
 });
