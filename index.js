@@ -1,1 +1,1 @@
-export { createIntentMap, createNodeCollector } from './src';
+export { enumeratePaths, createIntentMap, createNodeCollector } from './src';

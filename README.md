@@ -13,6 +13,13 @@ import * as utils from '@botmock-api/utils';
 ```
 
 ```js
+utils.enumeratePaths({ messages: string[], connections: string[] }): Set<Array<string>>
+```
+
+Function that returns a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+which contains arrays with the message ids of each possible journey in the provided messages + connections
+
+```js
 utils.createIntentMap(messages: []): Map<messageId: string, intentIds: string[]>
 ```
 

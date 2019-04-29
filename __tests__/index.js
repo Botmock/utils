@@ -1,8 +1,17 @@
 import { enumeratePaths, createIntentMap, createNodeCollector } from '../src';
 
-describe.skip('enumeratePaths', () => {
+describe('enumeratePaths', () => {
+  test('throws if not given root', () => {
+    expect(() => {
+      enumeratePaths();
+    }).toThrow();
+  });
   test('returns a set', () => {
-    expect(enumeratePaths() instanceof Set).toBeTruthy();
+    expect(
+      enumeratePaths([
+        { is_root: true, message_id: 0, next_message_ids: [] }
+      ]) instanceof Set
+    ).toBeTruthy();
   });
 });
 
