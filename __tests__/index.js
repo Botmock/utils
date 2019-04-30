@@ -27,8 +27,6 @@ describe('createIntentMap', () => {
 });
 
 describe('createNodeCollector', () => {
-  // let project = {};
-  // beforeEach(() => {});
   test('returns a function', () => {
     expect(createNodeCollector() instanceof Function).toBeTruthy();
   });
