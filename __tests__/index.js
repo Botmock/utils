@@ -16,6 +16,7 @@ describe('enumeratePaths', () => {
   test.todo('handles loops');
   test.todo('handles multi edges');
   test.todo('handles simple graphs');
+  test.todo('flattened set has length exponential in the number of nodes');
 });
 
 describe('createIntentMap', () => {
