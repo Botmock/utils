@@ -12,12 +12,16 @@ utilities for handling data from the Botmock API
 import * as utils from '@botmock-api/utils';
 ```
 
+#### enumeratePaths
+
 ```js
-utils.enumeratePaths({ messages: string[], connections: string[] }): Set<Array<string>>
+utils.enumeratePaths(messages: Message[]): Set<Array<string>>
 ```
 
 Function that returns a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-which contains arrays with the message ids of each possible journey in the provided messages + connections
+which contains arrays with the message ids of each possible journey in the provided messages
+
+#### createIntentMap
 
 ```js
 utils.createIntentMap(messages: []): Map<messageId: string, intentIds: string[]>
@@ -25,6 +29,8 @@ utils.createIntentMap(messages: []): Map<messageId: string, intentIds: string[]>
 
 Function that returns a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 which associates message ids with the list of intent ids connected to them
+
+#### createNodeCollector
 
 ```js
 utils.createNodeCollector(map: Map, get: (id: string) => ({}): (arr: string[]) => string[]
