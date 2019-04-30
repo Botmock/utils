@@ -4,13 +4,13 @@ export const enumeratePaths = (messages = []) => {
   if (typeof root === 'undefined') {
     throw new Error('messages must include a root message');
   }
-  const s = new Set([root.message_id]);
+  const s = new Set();
   // Recurse on next_message_ids, beginning with root
   (function f(nextIds) {
     for (const { message_id } of nextIds) {
       // Add the union of the last element in the set and the current message
       // id to the set
-      const lastSetElement = Array.from(s).pop();
+      const lastSetElement = Array.from(s).pop() || [];
       const message = messages.find(m => m.message_id === message_id);
       s.add([
         ...(typeof lastSetElement === 'string'
