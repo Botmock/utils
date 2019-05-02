@@ -12,6 +12,8 @@ utilities for handling data from the Botmock API
 import * as utils from '@botmock-api/utils';
 ```
 
+### Flow Operations
+
 #### enumeratePaths
 
 ```js
@@ -38,3 +40,12 @@ utils.createNodeCollector(map: Map, get: (id: string) => ({}): (arr: string[]) =
 
 Creates function that turns `next_messages` into a collection of _all_ reachable
 messages that are not connected by an intent
+
+### Async Operations
+
+```js
+await utils.checkEnvVars(n: ?number): Promise<void>
+```
+
+Checks that there exist at least `n` `BOTMOCK_`-prefixed environment variables defined in a local `.env` file;
+throws if this is not the case
