@@ -1,4 +1,11 @@
-import { enumeratePaths, createIntentMap, createNodeCollector } from '../src';
+import {
+  enumeratePaths,
+  createIntentMap,
+  createNodeCollector
+} from '../src/flowOperations';
+import { checkEnvVars } from '../src/checkEnvVars';
+
+describe.skip('checkEnvVars', () => {});
 
 describe('enumeratePaths', () => {
   test('throws if not given root', () => {
