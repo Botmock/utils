@@ -70,7 +70,7 @@ export const createNodeCollector = (map, getMessage) =>
       // this id appended to `collected`
       if (!map.has(message_id)) {
         const { next_message_ids } = getMessage(message_id);
-        return f(next_message_ids, [...collected, message_id]);
+        collected = f(next_message_ids, [...collected, message_id]);
       }
     }
     return collected;
