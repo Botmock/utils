@@ -65,13 +65,14 @@ export const createIntentMap = (messages = []) => {
 // Return a function that collects reachable nodes not connected by intents
 export const createNodeCollector = (map, getMessage) =>
   function f(next, collected = []) {
+    let localCollected = [...collected];
     for (const { message_id } of next) {
       // If the provided intent map does not have this message id, recur with
       // this id appended to `collected`
       if (!map.has(message_id)) {
         const { next_message_ids } = getMessage(message_id);
-        collected = f(next_message_ids, [...collected, message_id]);
+        localCollected = f(next_message_ids, [...localCollected, message_id]);
       }
     }
-    return collected;
+    return localCollected;
   };
