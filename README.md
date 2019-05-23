@@ -49,3 +49,9 @@ await utils.checkEnvVars(n: ?number): Promise<void>
 
 Checks that there exist at least `n` `BOTMOCK_`-prefixed environment variables defined in a local `.env` file;
 throws if this is not the case
+
+```js
+await utils.doesHaveGlobalPackages(packages: string[]): Boolean
+```
+
+Determines if all `packages` are installed globally. Returns false if not.

@@ -1,4 +1,6 @@
 import fs from 'fs';
+import { promisify } from 'util';
+import { exec } from 'child_process';
 import { join } from 'path';
 
 export const checkEnvVars = async (n = 4) => {
@@ -16,4 +18,12 @@ export const checkEnvVars = async (n = 4) => {
 see README.md
 `);
   }
+};
+
+// determine if arguments are globally installed npm packages
+export const doesHaveGlobalPackages = async packages => {
+  const { stdout } = await promisify(exec)('npm ls -g --depth=0');
+  return packages.every(packageName =>
+    stdout.split('\n').find(line => line.includes(packageName))
+  );
 };
