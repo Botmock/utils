@@ -51,7 +51,7 @@ Checks that there exist at least `n` `BOTMOCK_`-prefixed environment variables d
 throws if this is not the case
 
 ```js
-await utils.doesHaveGlobalPackages(packages: string[]): Boolean
+await utils.doesHaveGlobalPackages(packages: string[]): Promise<boolean>
 ```
 
 Determines if all `packages` are installed globally. Returns false if not.
