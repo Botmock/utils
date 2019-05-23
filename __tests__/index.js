@@ -3,9 +3,9 @@ import {
   createIntentMap,
   createNodeCollector
 } from '../src/flowOperations';
-import { checkEnvVars } from '../src/checkEnvVars';
+import { checkEnvVars, doesHaveGlobalPackages } from '../src/asyncOperations';
 
-describe.skip('checkEnvVars', () => {});
+// describe.skip('checkEnvVars', () => {});
 
 describe('enumeratePaths', () => {
   test('throws if not given root', () => {

@@ -3,4 +3,4 @@ export {
   createIntentMap,
   createNodeCollector
 } from './src/flowOperations';
-export { checkEnvVars } from './src/checkEnvVars';
+export { checkEnvVars, doesHaveGlobalPackages } from './src/asyncOperations';
