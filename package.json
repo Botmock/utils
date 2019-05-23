@@ -1,6 +1,6 @@
 {
   "name": "@botmock-api/utils",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "utilities for handling data from the Botmock API",
   "main": "index.js",
   "module": "main.js",
