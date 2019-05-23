@@ -20,7 +20,7 @@ see README.md
   }
 };
 
-// determine if arguments are globally installed npm packages
+// determine if packages are globally installed npm packages
 export const doesHaveGlobalPackages = async packages => {
   const { stdout } = await promisify(exec)('npm ls -g --depth=0');
   return packages.every(packageName =>
