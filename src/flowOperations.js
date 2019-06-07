@@ -31,7 +31,7 @@ export const createIntentMap = (messages = []) => {
       (acc, { next_message_ids }) => [
         ...acc,
         ...next_message_ids
-          .filter(({ intent }) => intent.value)
+          .filter(message => message.intent && message.intent.value)
           // Group this message with this intent and others like it (in that they
           // also are incident on this message)
           .map(message => [
