@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "utilities for handling data from the Botmock API",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "babel --out-file index.js src/index.ts"
