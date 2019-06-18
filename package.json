@@ -4,11 +4,13 @@
   "description": "utilities for handling data from the Botmock API",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel --out-file bundle.js src/index.ts"
   },
   "keywords": [
     "botmock",
-    "nodejs"
+    "api",
+    "typescript"
   ],
   "jest": {
     "preset": "ts-jest",
@@ -22,12 +24,16 @@
     "singleQuote": false,
     "printWidth": 80
   },
+  "bugs": "https://github.com/Botmock/utils/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Botmock/utils.git"
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/preset-typescript": "7.3.3",
     "@types/jest": "24.0.15",
     "@types/node": "12.0.8",
     "@types/node-fetch": "2.3.7",
