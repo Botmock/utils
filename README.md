@@ -11,4 +11,5 @@ npm i @botmock-api/utils
 ## API
 
 `createIntentMap(messages: Message[], intents: Intent[]): IntentMap`
+
 Returns a map of message ids and any intents connected to them.
