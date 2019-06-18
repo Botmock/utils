@@ -1,14 +1,14 @@
-export type Intent = {
+type Intent = {
   id: string;
   name: string;
   utterances: {}[];
 };
 
-export type Message = {
+type Message = {
   next_message_ids: { message_id: string; intent: { value: string } }[];
 };
 
-export type IntentMap = Map<string, Intent[]>;
+type IntentMap = Map<string, Intent[]>;
 
 /**
  * Returns a map of message ids and any intents connected to them.
