@@ -2,10 +2,10 @@
   "name": "@botmock-api/utils",
   "version": "1.0.1",
   "description": "utilities for handling data from the Botmock API",
-  "main": "src/index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "babel --out-file bundle.js src/index.ts"
+    "build": "babel --out-file index.js src/index.ts"
   },
   "keywords": [
     "botmock",
