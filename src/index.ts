@@ -1,11 +1,23 @@
+type Utterance = {
+  text: string;
+  variables: any[];
+};
+
 type Intent = {
   id: string;
   name: string;
-  utterances: {}[];
+  utterances: Utterance[];
+};
+
+type NextMessage = {
+  message_id: string;
+  action: any;
+  conditional: boolean;
+  intent: { value: string };
 };
 
 type Message = {
-  next_message_ids: { message_id: string; intent: { value: string } }[];
+  next_message_ids: NextMessage[];
 };
 
 type IntentMap = Map<string, Intent[]>;
@@ -27,11 +39,11 @@ export const createIntentMap = (
   intents: Intent[] = []
 ): IntentMap => {
   return new Map<string, Intent[]>(
-    messages.reduce(
-      (acc, { next_message_ids }) => [
+    messages.reduce((acc, { next_message_ids }) => {
+      return [
         ...acc,
         ...next_message_ids
-          .filter(({ intent }) => intent.value)
+          .filter(({ intent = { value: "" } }) => intent.value)
           .map(message => [
             message.message_id,
             [
@@ -54,8 +66,7 @@ export const createIntentMap = (
               )
             ]
           ])
-      ],
-      []
-    )
+      ];
+    }, [])
   );
 };
