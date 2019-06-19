@@ -1,27 +1,22 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es2017",
+    "incremental": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
     "outDir": "dist",
     "declaration": true,
     "sourceMap": true,
     "allowJs": true,
     "allowUnreachableCode": false,
-    "baseUrl": ".",
-    "checkJs": true,
     "lib": ["esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
-    "esModuleInterop": true,
-    "preserveConstEnums": true,
-    "pretty": true,
-    "removeComments": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "esnext",
-    "types": []
+    "removeComments": true
   },
   "exclude": ["node_modules", "dist"]
 }

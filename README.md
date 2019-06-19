@@ -1,5 +1,7 @@
 # utils
 
+> this package is unstable and likely to undergo major API changes
+
 This module exposes utilities for handling data from the [Botmock API](https://docs.botmock.com/#introduction).
 
 It uses TypeScript and is installable by running:

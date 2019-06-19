@@ -1,3 +1,7 @@
-// import { createIntentMap } from "../src";
+describe("intent map creation", () => {
+  test.todo("returns a map");
+});
 
-test.todo("..");
+// describe("node collector creation", () => {
+//   test.todo("returns a function");
+// });
