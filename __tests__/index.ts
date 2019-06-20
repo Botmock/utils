@@ -1,7 +1,14 @@
+import { createIntentMap, createMessageCollector } from "../src";
+
 describe("intent map creation", () => {
-  test.todo("returns a map");
+  test("returns a map", () => {
+    expect(createIntentMap([], []) instanceof Map).toBe(true);
+  });
 });
 
 describe("node collector creation", () => {
-  test.todo("returns a function");
+  test("returns a function", () => {
+    const fn = createMessageCollector(createIntentMap([], []), () => {});
+    expect(fn instanceof Function).toBe(true);
+  });
 });
