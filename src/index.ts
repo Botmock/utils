@@ -70,3 +70,29 @@ export const createIntentMap = (
     }, [])
   );
 };
+
+/**
+ * Returns a function that collects all messages not connected by an intent.
+ *
+ * @remarks
+ * This function is importable as {import { createMessageCollector } from "@botmock-api/utils"}.
+ *
+ * @param map - Map relating message ids and array of intents connected to them
+ * @param getMessage - Function that takes message id and returns message from board
+ * @returns IntentMap
+ *
+ * @beta
+ */
+export const createMessageCollector = <A, B>(map: IntentMap, getMessage: any) =>
+  function f(next: NextMessage[], collected: string[] = []) {
+    let localCollected = collected;
+    // iterate of all next messages; if message not found in intent map,
+    // explore this message's next messages
+    for (const { message_id } of next) {
+      if (!map.has(message_id)) {
+        const { next_message_ids } = getMessage(message_id);
+        localCollected = f(next_message_ids, [...collected, message_id]);
+      }
+    }
+    return localCollected;
+  };
