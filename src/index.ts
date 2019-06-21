@@ -84,12 +84,14 @@ export const createIntentMap = (
  * @beta
  */
 export const createMessageCollector = <A, B>(map: IntentMap, getMessage: any) =>
-  function f(next: NextMessage[], collected: string[] = []) {
+  function f(next: NextMessage[], collected: string[] = []): string[] {
     let localCollected = collected;
+    const witnessedMessages: string[] = [];
     // iterate over all next messages; if message not found in intent map,
     // explore this message's next messages
     for (const { message_id } of next) {
-      if (!map.has(message_id)) {
+      witnessedMessages.push(message_id);
+      if (!map.has(message_id) && !witnessedMessages.includes(message_id)) {
         const { next_message_ids } = getMessage(message_id);
         localCollected = f(next_message_ids, [...collected, message_id]);
       }
