@@ -81,7 +81,7 @@ export const createIntentMap = (
  *
  * @param map - Map relating message ids and array of intents connected to them
  * @param getMessage - Function that takes message id and returns message from board
- * @returns IntentMap
+ * @returns MessageCollector
  *
  * @beta
  */
