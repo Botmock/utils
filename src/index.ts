@@ -17,10 +17,21 @@ type NextMessage = {
 };
 
 type Message = {
+  message_id: string;
+  message_type: string;
   next_message_ids: NextMessage[];
+  is_root: boolean;
+  payload: {
+    nodeName: string;
+    context: any[];
+    text: string;
+    workflow_column_id: string;
+    assigned_to: string;
+  };
+  previous_message_ids: { message_id: string; action: string | {} }[];
 };
 
-type IntentMap = Map<string, Intent[]>;
+type IntentMap = Map<string, string[]>;
 
 /**
  * Returns a map of message ids and any intents connected to them.
@@ -36,7 +47,7 @@ export const createIntentMap = (
   messages: Message[] = [],
   intents: Intent[] = []
 ): IntentMap => {
-  return new Map<string, Intent[]>(
+  return new Map<string, string[]>(
     messages.reduce((acc, { next_message_ids }) => {
       return [
         ...acc,
@@ -114,6 +125,4 @@ export const createMessageCollector = (map: IntentMap, getMessage: any) =>
  *
  * @beta
  */
-// export const topoSort = (messages: Message[]) => {
-//   return [];
-// };
+// export const topoSort = (messages: Message[]) => {};
