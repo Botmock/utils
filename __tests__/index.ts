@@ -55,7 +55,7 @@ describe("topological sorting", () => {
   test("returns sorted array", () => {
     const [{ message_id }] = utils.topoSort(messages);
     expect(message_id).toBe(FIRST_MESSAGE_ID);
-    expect(utils.topoSort(messages)).toHaveLength(2);
+    expect(utils.topoSort(messages)).toHaveLength(messages.length);
   });
   test.todo("throws error in the case of project that contains cycles");
 });
