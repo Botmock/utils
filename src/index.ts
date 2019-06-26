@@ -31,8 +31,6 @@ type IntentMap = Map<string, Intent[]>;
  * @param messages - Array of board messages
  * @param intents - Array of project intents
  * @returns IntentMap
- *
- * @beta
  */
 export const createIntentMap = (
   messages: Message[] = [],
@@ -44,29 +42,34 @@ export const createIntentMap = (
         ...acc,
         ...next_message_ids
           .filter(({ intent = { value: "" } }) => intent.value)
-          // map each message that has an intent to arrays of key, value
-          // tuples for the sake of the map constructor
+          // map next messages to (id, incident intent id array) pairs
           .map(message => [
             message.message_id,
             [
-              intents.find(({ id }) => id === message.intent.value),
-              ...messages.reduce(
-                (acc, { next_message_ids }) => [
+              intents.find(intent => {
+                return intent.id === message.intent.value;
+              }),
+              // spread across the intent on any next message ids connected
+              // to this message
+              ...messages.reduce((acc, { next_message_ids }) => {
+                return [
                   ...acc,
                   ...next_message_ids
-                    .filter(
-                      ({ intent, message_id }) =>
+                    .filter(({ intent, message_id }) => {
+                      return (
                         intent.value &&
                         intent.value !== message.intent.value &&
                         message_id === message.message_id
-                    )
-                    .map(message =>
-                      intents.find(({ id }) => id === message.intent.value)
-                    )
-                ],
-                []
-              )
-            ]
+                      );
+                    })
+                    .map(message => {
+                      return intents.find(
+                        ({ id }) => id === message.intent.value
+                      );
+                    })
+                ];
+              }, [])
+            ].map(intent => intent.id)
           ])
       ];
     }, [])
@@ -85,7 +88,7 @@ export const createIntentMap = (
  *
  * @beta
  */
-export const createMessageCollector = <A, B>(map: IntentMap, getMessage: any) =>
+export const createMessageCollector = (map: IntentMap, getMessage: any) =>
   function f(next: NextMessage[], collected: string[] = []): string[] {
     let localCollected = collected;
     // iterate over all next messages; if message not found in intent map,
@@ -98,3 +101,19 @@ export const createMessageCollector = <A, B>(map: IntentMap, getMessage: any) =>
     }
     return localCollected;
   };
+
+/**
+ * Creates linear order of messages such that if (m1, m2) is a connection in the
+ * board, m1 appears before m2 in the linear order.
+ *
+ * @remarks
+ * This function is importable as {import { topoSort } from "@botmock-api/utils"}.
+ *
+ * @param messages - Array of messages in the board.
+ * @returns Message[]
+ *
+ * @beta
+ */
+// export const topoSort = (messages: Message[]) => {
+//   return [];
+// };
