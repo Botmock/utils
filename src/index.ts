@@ -22,11 +22,11 @@ type Message = {
   next_message_ids: NextMessage[];
   is_root: boolean;
   payload: {
-    nodeName: string;
-    context: any[];
-    text: string;
-    workflow_column_id: string;
-    assigned_to: string;
+    nodeName?: string;
+    context?: any[];
+    text?: string;
+    workflow_column_id?: string;
+    assigned_to?: string;
   };
   previous_message_ids: { message_id: string; action: string | {} }[];
 };
@@ -125,4 +125,21 @@ export const createMessageCollector = (map: IntentMap, getMessage: any) =>
  *
  * @beta
  */
-// export const topoSort = (messages: Message[]) => {};
+export const topoSort = (messages: Message[] = []) => {
+  const orderedMessages: Message[] = messages;
+  try {
+    let i: number = 0;
+    // insert the message with in-degree 0 to the start of the returned array
+    while (i !== messages.length) {
+      const j = orderedMessages.findIndex(
+        message => !message.previous_message_ids.length
+      );
+      const [message] = orderedMessages.splice(j, 1);
+      orderedMessages.unshift(message);
+      i += 1;
+    }
+  } catch (_) {
+    throw "cannot perform sort on project that contains cycles";
+  }
+  return orderedMessages;
+};
