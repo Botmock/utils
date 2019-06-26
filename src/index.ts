@@ -139,7 +139,7 @@ export const topoSort = (messages: Message[] = []) => {
       i += 1;
     }
   } catch (_) {
-    throw "cannot perform sort on project that contains cycles";
+    throw "cannot sort messages with cycles";
   }
   return orderedMessages;
 };
