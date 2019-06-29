@@ -99,19 +99,31 @@ export const createIntentMap = (
  *
  * @beta
  */
-export const createMessageCollector = (map: IntentMap, getMessage: any) =>
-  function f(next: NextMessage[], collected: string[] = []): string[] {
-    let localCollected = collected;
-    // iterate over all next messages; if message not found in intent map,
-    // explore this message's next messages
+export const createMessageCollector = (map: IntentMap, getMessage: any) => {
+  return function collect(
+    next: NextMessage[],
+    collectedIds: string[] = []
+  ): string[] {
+    let localCollected = collectedIds;
     for (const { message_id } of next) {
+      // if this next message does not have intents incident on it..
       if (!map.has(message_id)) {
         const { next_message_ids } = getMessage(message_id);
-        localCollected = f(next_message_ids, [...collected, message_id]);
+        // ..and this next message is one not yet seen by the collector..
+        if (
+          typeof localCollected.find(id => id === message_id) === "undefined"
+        ) {
+          // ..set localCollected to include everything downstream of it
+          localCollected = collect(next_message_ids, [
+            ...collectedIds,
+            message_id
+          ]);
+        }
       }
     }
     return localCollected;
   };
+};
 
 /**
  * Creates linear order of messages such that if (m1, m2) is a connection in the

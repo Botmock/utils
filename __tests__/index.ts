@@ -7,7 +7,7 @@ describe("intent map creation", () => {
   test.todo("map has string keys and array values");
 });
 
-describe("node collector creation", () => {
+describe("message collector creation", () => {
   test("returns a function", () => {
     const fn = utils.createMessageCollector(
       utils.createIntentMap([], []),
