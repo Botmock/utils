@@ -1,5 +1,14 @@
 import * as utils from "../src";
 
+// describe.skip("intent map inversion", () => {
+//   test("returns a map", () => {
+//     const intentMap = utils.createIntentMap([], []);
+//     expect(utils.invertIntentMap(intentMap) instanceof Map).toBe(true);
+//   });
+// });
+
+describe.skip("symmetric wrap", () => {});
+
 describe("intent map creation", () => {
   test("returns a map", () => {
     expect(utils.createIntentMap([], []) instanceof Map).toBe(true);

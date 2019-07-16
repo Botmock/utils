@@ -96,8 +96,6 @@ export const createIntentMap = (
  * @param map - Map relating message ids and array of intents connected to them
  * @param getMessage - Function that takes message id and returns message from board
  * @returns MessageCollector
- *
- * @beta
  */
 export const createMessageCollector = (map: IntentMap, getMessage: any) => {
   return function collect(
@@ -123,6 +121,38 @@ export const createMessageCollector = (map: IntentMap, getMessage: any) => {
     }
     return localCollected;
   };
+};
+
+type CharMap = { [key: string]: string };
+
+/**
+ * Wraps occurances of variables within utterance text with a given character.
+ *
+ * @remarks
+ * This function is importable as {import { symmetricWrap } from "@botmock-api/utils"}.
+ *
+ * @param text - Utterance string.
+ * @param charMap - Object with l and r properties containing characters to wrap with
+ * @returns string
+ *
+ * @beta
+ */
+export const symmetricWrap = (text: string, { l, r }: CharMap): string => {
+  let text_ = text;
+  let numVariableCharsEncountered = 0;
+  const BOTMOCK_VARIABLE_CHAR = "%";
+  const characters = text_.split("").map((c, i) => ({ char: c, i }));
+  for (const { char, i } of characters) {
+    if (char === BOTMOCK_VARIABLE_CHAR) {
+      numVariableCharsEncountered += 1;
+      if (numVariableCharsEncountered % 2 !== 0) {
+        text_ = text_.substr(0, i) + l + text_.substr(i + 1);
+      } else {
+        text_ = text_.substr(0, i) + r + text_.substr(i + 1);
+      }
+    }
+  }
+  return text_;
 };
 
 /**
