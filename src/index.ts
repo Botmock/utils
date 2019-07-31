@@ -57,9 +57,9 @@ export const createIntentMap = (
           .map(message => [
             message.message_id,
             [
-              intents.find(intent => {
+              ...(intents.filter(intent => {
                 return intent.id === message.intent.value;
-              }),
+              }) || []),
               // spread across the intent on any next message ids connected
               // to this message
               ...messages.reduce((acc, { next_message_ids }) => {
