@@ -53,31 +53,26 @@ export const createIntentMap = (
         ...acc,
         ...next_message_ids
           .filter(({ intent = { value: "" } }) => intent.value)
-          // map next messages to (id, incident intent id array) pairs
           .map(message => [
             message.message_id,
+            // associate intents connected to message with message id
             [
-              ...(intents.filter(intent => {
-                return intent.id === message.intent.value;
-              }) || []),
-              // spread across the intent on any next message ids connected
-              // to this message
+              ...(intents.filter(
+                intent => intent.id === message.intent.value
+              ) || []),
               ...messages.reduce((acc, { next_message_ids }) => {
                 return [
                   ...acc,
                   ...next_message_ids
-                    .filter(({ intent, message_id }) => {
-                      return (
+                    .filter(
+                      ({ intent, message_id }) =>
                         intent.value &&
                         intent.value !== message.intent.value &&
                         message_id === message.message_id
-                      );
-                    })
-                    .map(message => {
-                      return intents.find(
-                        ({ id }) => id === message.intent.value
-                      );
-                    })
+                    )
+                    .map(message =>
+                      intents.find(({ id }) => id === message.intent.value)
+                    )
                 ];
               }, [])
             ].map(intent => intent.id)
