@@ -75,7 +75,7 @@ export const createIntentMap = (
                     )
                 ];
               }, [])
-            ].map(intent => intent.id)
+            ].map((intent = {}) => intent.id)
           ])
       ];
     }, [])
