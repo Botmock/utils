@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
     "target": "es2017",
-    "incremental": true,
-    "sourceMap": true,
     "esModuleInterop": true,
     "outDir": "dist",
     "declaration": true,
     "sourceMap": true,
-    "allowJs": true,
     "allowUnreachableCode": false,
     "lib": ["esnext"],
     "module": "esnext",
